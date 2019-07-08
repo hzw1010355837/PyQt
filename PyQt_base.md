@@ -13,7 +13,7 @@ import sys
   * QDialog:是对话窗口的基类.没有菜单栏等
   * QWidget:不确定窗口的用途,就是用QWidget:arrow_right:窗口小部件
 
-* 布局:QFormLayout(表单布局), QVBoxLayout(垂直布局) **常用方法addWidget(添加部件) ** *最后需要使用setLayout(layout)*
+* 布局:QFormLayout(表单布局), QVBoxLayout(垂直布局) **常用方法addWidget(添加部件)** *最后需要使用setLayout(layout)*
 
 * QLabel:展示文本信息
 
