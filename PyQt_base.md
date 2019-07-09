@@ -1,9 +1,7 @@
-
-
-
-
 ```python
-form PyQt5.QWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+form PyQt5.QtWidgets import *
 import sys
 ```
 
@@ -14,6 +12,8 @@ import sys
   * QWidget:不确定窗口的用途,就是用QWidget:arrow_right:窗口小部件
 
 * 布局:QFormLayout(表单布局), QVBoxLayout(垂直布局) **常用方法addWidget(添加部件) ** *最后需要使用setLayout(layout)*
+
+  * QFormLayout中添加控件:按行添加layout.addRow(*args)
 
 * 查看信号可以直接进入**源代码搜索signal** (QAbstractButton内有,QPushButton只是继承而已)
 
@@ -78,7 +78,7 @@ import sys
     * addItem() & addItems([...])添加下拉选择
     * cb对象获取cb.current.text()获取当前选择文本/cb.itemText(index)获取下拉列表索引位置文本
 
-  *  QSpinBox:计数器控件
+  * QSpinBox:计数器控件
 
     *  信号与槽之间触发,当值发生变化时sb.valueChanged.connect()
 
@@ -102,12 +102,72 @@ import sys
 
     * QMessageBox
 
-    * QColorDialog
+      * 显示对话框图标可能不同,显示按钮不一样
 
-    * QFileDialog
+      1. 关于对话框:`QMessageBox.about(self, 对话框title,对话框内容)`
+      2. 错误对话框:`QMessageBox.information(self, 对话框title,对话框内容, QMessageBox.Yes | QMessageBox.No, 默认Enter键 QMessageBox.Yes)`
+      3. 警告对话框:QMessageBox.warning
+      4. 提问对话框:QMessageBox.question
+      5. 错误对话框:QMessageBox.critical
 
-    * QFontDialog
+    * QColorDialog:颜色对话框
 
-    * QInputDialog
+      * color =  QColorDialog.getColor()
 
-    
+      * ```python
+        p = QPalette()
+        # 1,设置文字颜色
+        p.setColor(QPalette.WindowText, color)
+        # 设置调色板颜色
+        self.colorLabel.setPalette(p)
+        # 2,设置背景色
+        p.setColor(QPalette.Window, color)
+        self.colorLabel.setAutoFillBackground(True)
+        self.colorLabel.setPalette(p)
+        ```
+
+    * QFileDialog:文件对话框
+
+      * 打开图像文件:fname, _ = QFileDialog.getOpenFileName(self, 对话框title, 默认路径, 过滤文件~~格式:图像文件 (*.jpg *.png)~~)
+
+        * self.imageLabel.setPixmap(QPixmap(fname))  在Label上添加图片
+
+      * 打开文本:
+
+        * ```python
+          # 槽函数内定义
+          dialog = QFileDialog()
+          dialog.setFileMode(QFileDialog.AnyFile)
+          dialog.setFileter(QDir.Files)
+          # 尝试打开对话框
+          dialog.exec()
+          # 可以打开多个
+          dialog.selectedFiles()
+          with open(filenames[0], encoding="utf-8, mode="r") as f:
+          	data = f.read()
+          	self.contents.setText(data)
+          ```
+
+    * QFontDialog:字体对话框
+
+      * font, ok = QFonfDialog.getFont()
+
+    * QInputDialog:输入对话框
+
+      1. QInputDialog.getItem()传入一个列表或元组生成一个QComboBox下拉列表
+         * item, ok = QInputDialog.getItem(self, 对话框title, 对话框内容, 下拉列表选项)
+      2. QInputDialog.getText()普通文本
+         * text, ok = QInputDialog.getText(self, 对话框title, 对话框内容)
+      3. QInputDialog.getInt()
+         * num, ok = QInputDialog.getInt(self, 对话框title, 对话框内容)
+
+  ```python
+  if __name__ == "__main__":
+  	app = QApplication(sys.argv)
+  	main = DemoClass()
+  	main.show()
+  	exit(app.exec_())
+  ```
+
+  
+
