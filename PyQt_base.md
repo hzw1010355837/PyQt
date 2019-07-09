@@ -15,6 +15,10 @@ import sys
 
 * 布局:QFormLayout(表单布局), QVBoxLayout(垂直布局) **常用方法addWidget(添加部件) ** *最后需要使用setLayout(layout)*
 
+* 查看信号可以直接进入**源代码搜索signal** (QAbstractButton内有,QPushButton只是继承而已)
+
+  ----
+
 * QLabel:展示文本信息
 
   * setAlignment():设置文本对齐方式
@@ -57,7 +61,7 @@ import sys
       self.button1.clicked.connect(lambda:self.whichButton(self.button1))
       ```
 
-  * AToolButton
+  * QToolButton
 
   * QRadioButton:单选按钮控件 多于toggled搭配传递信号
 
@@ -74,4 +78,36 @@ import sys
     * addItem() & addItems([...])添加下拉选择
     * cb对象获取cb.current.text()获取当前选择文本/cb.itemText(index)获取下拉列表索引位置文本
 
-  * 
+  *  QSpinBox:计数器控件
+
+    *  信号与槽之间触发,当值发生变化时sb.valueChanged.connect()
+
+  * QSlider:滑块控件
+
+    * setTickPosition(QSlider.TickBelow)设置刻度的位置,刻度在下方
+    * setTickInterval(6)设置刻度间隔
+    * 获取刻度值:slider.value()
+    * **信号使用**:slider.valueChanged.connect(槽)
+    * **与之相同,当多个信号与槽绑定时,获取当前绑定信号对象使用self.sender()**
+
+  * QDialog:对话框
+
+    * ```python
+      # 设置主窗口也可用Qt.NonModal,Qt.WindowModal,Qt.ApplicationModal
+      # 模态、非模态、半模态窗口
+      # 窗口级模态对话框，即只会阻塞父窗口、父窗口的父窗口及兄弟窗口
+      # 应用程序级模态对话框，即会阻塞整个应用程序的所有窗口
+      dialog.setWindowModality(Qt.WindowModal)
+      ```
+
+    * QMessageBox
+
+    * QColorDialog
+
+    * QFileDialog
+
+    * QFontDialog
+
+    * QInputDialog
+
+    
