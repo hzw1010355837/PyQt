@@ -13,8 +13,8 @@ import sys
   * ```python
     def paintEvent(self, event)
     	# 基本格式
-        painter = QPainter()
-        painter.begin()
+        painter = QPainter(self)
+        painter.begin(self)
         # TODO 对应相应的API实现
         painter.drawText(...)
         painter.end()
