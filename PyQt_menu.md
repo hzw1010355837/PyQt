@@ -43,3 +43,10 @@
     
 
   * Tips:设置窗口大小时,使用self.resize(w,h)和**self.setGeometry(x,y,w,h)**后者居多
+
+  * 显示打印对话框
+
+    * printDialog = QPageSetupDialog(self.printer, self); printDialog.exec() # 显示打印设置对话框
+    * printdialog = QPrintDialog(self.printer, self); printerdialog.exec() # 显示打印对话框~~指定输出格式PDF...~~
+    * QTextEdit()对象直接由print()方法可以直接将文本输出至打印机:self.editor.print(self.printer)
+
