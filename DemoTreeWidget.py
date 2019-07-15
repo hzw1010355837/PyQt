@@ -63,7 +63,6 @@ class TreeWidgetDemo(QWidget):
             (item.parent() or root).removeChild(item)
             # (item.parent() or root).removeChild(item)
 
-        pass
 
     def updateNode(self):
         item = self.tree.currentItem()

@@ -59,6 +59,8 @@ import sys
 
     * ```python
       self.button1.clicked.connect(lambda:self.whichButton(self.button1))
+      # 也可以使用functools里的partial传递参数
+      # self.button1.clicked.connect(partial(self.whichButton(self.button1)))
       ```
 
   * QToolButton
