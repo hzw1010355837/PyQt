@@ -45,7 +45,6 @@ class TreeWidgetDemo(QWidget):
         child3.setText(0, "child3")
         child3.setText(1, "child3_v")
 
-
         layout1.addLayout(layout)
         layout1.addWidget(self.tree)
         self.setLayout(layout1)
@@ -59,10 +58,9 @@ class TreeWidgetDemo(QWidget):
     def removeNode(self):
         item1 = self.tree.currentItem()
         root = self.tree.invisibleRootItem()
-        for item in self.tree.selectedItems(): # type:QTreeWidgetItem
+        for item in self.tree.selectedItems():  # type:QTreeWidgetItem
             (item.parent() or root).removeChild(item)
             # (item.parent() or root).removeChild(item)
-
 
     def updateNode(self):
         item = self.tree.currentItem()
